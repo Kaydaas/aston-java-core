@@ -6,10 +6,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    static void main() {
         List<Student> students = new ArrayList<>();
         Path path = Path.of("students.txt");
 
@@ -29,7 +30,7 @@ public class Main {
         students.stream()
                 .peek(System.out::println)
                 .flatMap(student -> student.getBooks().stream())
-                .sorted((b1, b2) -> b1.getPagesNumber().compareTo(b2.getPagesNumber()))
+                .sorted(Comparator.comparing(Book::getPagesNumber))
                 .distinct()
                 .peek(b -> System.out.println("Distinct: " + b))
                 .filter(b -> b.getReleaseYear().isAfter(Year.of(2000)))
@@ -43,7 +44,7 @@ public class Main {
         students.stream()
                 .peek(System.out::println)
                 .flatMap(student -> student.getBooks().stream())
-                .sorted((b1, b2) -> b1.getPagesNumber().compareTo(b2.getPagesNumber()))
+                .sorted(Comparator.comparing(Book::getPagesNumber))
                 .distinct()
                 .peek(b -> System.out.println("Distinct: " + b))
                 .filter(b -> b.getReleaseYear().isAfter(Year.of(2000)))
@@ -60,7 +61,7 @@ public class Main {
         students.stream()
                 .peek(System.out::println)
                 .flatMap(student -> student.getBooks().stream())
-                .sorted((b1, b2) -> b1.getPagesNumber().compareTo(b2.getPagesNumber()))
+                .sorted(Comparator.comparing(Book::getPagesNumber))
                 .distinct()
                 .filter(b -> b.getReleaseYear().isAfter(Year.of(2000)))
                 .limit(3)
