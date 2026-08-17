@@ -44,13 +44,17 @@ public class Main {
     private static Student parseLine(String line) {
         String[] data = line.split(";");
 
-        Student student = Student.fromString(data[0]);
+        String[] student_parts = data[0].split(" ");
 
+        String first_name = student_parts[0];
+        String last_name = student_parts[1];
+
+        List<Book> books = new ArrayList<>();
         for (int i = 1; i < data.length; i++) {
             Book book = Book.fromString(data[i]);
-            student.addBook(book);
+            books.add(book);
         }
 
-        return student;
+        return new Student(first_name, last_name, books);
     }
 }
