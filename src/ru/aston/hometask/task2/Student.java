@@ -25,9 +25,10 @@ public class Student {
 
     public String toString() {
         return String.format(
-                "Студент { Имя=%s, фамилия=%s }",
+                "Студент { Имя=%s, фамилия=%s, книги=%s}",
                 this.getFirstName(),
-                this.getLastName()
+                this.getLastName(),
+                books.toString()
         );
     }
 }
