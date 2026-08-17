@@ -26,38 +26,6 @@ public class Main {
             System.out.println("Error reading file: " + e.getMessage());
         }
 
-        /*
-        students.stream()
-                .peek(System.out::println)
-                .flatMap(student -> student.getBooks().stream())
-                .sorted(Comparator.comparing(Book::getPagesNumber))
-                .distinct()
-                .peek(b -> System.out.println("Distinct: " + b))
-                .filter(b -> b.getReleaseYear().isAfter(Year.of(2000)))
-                .limit(3)
-                .peek(b -> System.out.println("Limit: " + b))
-                .map(Book::getReleaseYear)
-                .forEach(System.out::println);
-        */
-
-        /*
-        students.stream()
-                .peek(System.out::println)
-                .flatMap(student -> student.getBooks().stream())
-                .sorted(Comparator.comparing(Book::getPagesNumber))
-                .distinct()
-                .peek(b -> System.out.println("Distinct: " + b))
-                .filter(b -> b.getReleaseYear().isAfter(Year.of(2000)))
-                .limit(3)
-                .peek(b -> System.out.println("Limit: " + b))
-                .map(Book::getReleaseYear)
-                .findFirst()
-                .ifPresentOrElse(
-                        year -> System.out.println("Год выпуска найденной книги: " + year),
-                        () -> System.out.println("Такая книга отсутствует")
-                );
-        */
-
         students.stream()
                 .peek(System.out::println)
                 .flatMap(student -> student.getBooks().stream())
