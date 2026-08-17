@@ -25,10 +25,11 @@ public class Student {
 
     public String toString() {
         return String.format(
-                "Студент { Имя=%s, фамилия=%s, книги=%s}",
+                "Студент { Имя=%s, фамилия=%s, книги(%s)=%s}",
                 this.getFirstName(),
                 this.getLastName(),
-                books.toString()
+                books.size(),
+                books
         );
     }
 }
