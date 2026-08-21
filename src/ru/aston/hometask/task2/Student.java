@@ -3,22 +3,22 @@ package ru.aston.hometask.task2;
 import java.util.List;
 
 public class Student {
-    private final String first_name;
-    private final String last_name;
+    private final String firstName;
+    private final String lastName;
     private final List<Book> books;
 
-    public Student(String first_name, String last_name, List<Book> books) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public Student(String firstName, String lastName, List<Book> books) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.books = books;
     }
 
     public String getFirstName() {
-        return this.first_name;
+        return this.firstName;
     }
 
     public String getLastName() {
-        return this.last_name;
+        return this.lastName;
     }
 
     public List<Book> getBooks() { return this.books; }

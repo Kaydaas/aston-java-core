@@ -5,13 +5,13 @@ import java.util.Objects;
 
 public class Book {
     private final String title;
-    private final Integer pages_number;
-    private final Year release_year;
+    private final Integer pagesNumber;
+    private final Year releaseYear;
 
-    public Book(String title, int pages_number, Year release_year) {
+    public Book(String title, int pagesNumber, Year releaseYear) {
         this.title = title;
-        this.pages_number = pages_number;
-        this.release_year = release_year;
+        this.pagesNumber = pagesNumber;
+        this.releaseYear = releaseYear;
     }
 
     public String getTitle() {
@@ -19,21 +19,21 @@ public class Book {
     }
 
     public Integer getPagesNumber() {
-        return this.pages_number;
+        return this.pagesNumber;
     }
 
     public Year getReleaseYear() {
-        return this.release_year;
+        return this.releaseYear;
     }
 
     public static Book fromString(String string) {
         String[] parts = string.split(",");
 
         String title = parts[0];
-        int pages_number = Integer.parseInt(parts[1]);
-        Year release_year = Year.of(Integer.parseInt(parts[2]));
+        int pagesNumber = Integer.parseInt(parts[1]);
+        Year releaseYear = Year.of(Integer.parseInt(parts[2]));
 
-        return new Book(title, pages_number, release_year);
+        return new Book(title, pagesNumber, releaseYear);
     }
 
     public String toString() {

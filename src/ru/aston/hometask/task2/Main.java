@@ -1,60 +1,12 @@
 package ru.aston.hometask.task2;
 
-import java.io.BufferedReader ;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.time.Year;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class Main {
+    static final String FILE_PATH = "students.txt";
+
     static void main() {
-        List<Student> students = new ArrayList<>();
-        Path path = Path.of("students.txt");
-
-        try (BufferedReader reader = Files.newBufferedReader(path)) {
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                Student student = parseLine(line);
-                students.add(student);
-            }
-
-        } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
-        }
-
-        students.stream()
-                .peek(System.out::println)
-                .flatMap(student -> student.getBooks().stream())
-                .sorted(Comparator.comparing(Book::getPagesNumber))
-                .distinct()
-                .filter(b -> b.getReleaseYear().isAfter(Year.of(2000)))
-                .limit(3)
-                .map(Book::getReleaseYear)
-                .findFirst()
-                .ifPresentOrElse(
-                        year -> System.out.println("Год выпуска найденной книги: " + year),
-                        () -> System.out.println("Такая книга отсутствует")
-                );
-    }
-
-    private static Student parseLine(String line) {
-        String[] data = line.split(";");
-
-        String[] student_parts = data[0].split(" ");
-
-        String first_name = student_parts[0];
-        String last_name = student_parts[1];
-
-        List<Book> books = new ArrayList<>();
-        for (int i = 1; i < data.length; i++) {
-            Book book = Book.fromString(data[i]);
-            books.add(book);
-        }
-
-        return new Student(first_name, last_name, books);
+        List<Student> students = StudentReader.parseFile(FILE_PATH);
+        StudentService.findBook(students);
     }
 }
