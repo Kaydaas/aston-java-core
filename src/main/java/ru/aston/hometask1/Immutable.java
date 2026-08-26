@@ -1,4 +1,4 @@
-package ru.aston.hometask.task1;
+package ru.aston.hometask1;
 
 public class Immutable {
     private final Changeable changeable;

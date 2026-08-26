@@ -1,4 +1,4 @@
-package ru.aston.hometask.task2;
+package ru.aston.hometask2;
 
 import java.time.Year;
 import java.util.Objects;
