@@ -15,6 +15,10 @@ public class User {
         this.email = builder.email;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public static class Builder {
         private String firstName;
         private String lastName;
@@ -22,27 +26,27 @@ public class User {
         private int age;
         private String email;
 
-        public Builder setFirstName(String firstName) {
+        public Builder firstName(String firstName) {
             this.firstName = firstName;
             return this;
         }
 
-        public Builder setLastName(String lastName) {
+        public Builder lastName(String lastName) {
             this.lastName = lastName;
             return this;
         }
 
-        public Builder setMiddleName(String middleName) {
+        public Builder middleName(String middleName) {
             this.middleName = middleName;
             return this;
         }
 
-        public Builder setAge(int age) {
+        public Builder age(int age) {
             this.age = age;
             return this;
         }
 
-        public Builder setEmail(String email) {
+        public Builder email(String email) {
             this.email = email;
             return this;
         }
