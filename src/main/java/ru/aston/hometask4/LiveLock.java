@@ -18,9 +18,13 @@ public class LiveLock {
     public void op1() {
         while (true) {
             try {
-                lock1.tryLock(1000, TimeUnit.MILLISECONDS);
+                if (!lock1.tryLock(1000, TimeUnit.MILLISECONDS)) {
+                    System.out.println("op1: cannot acquired lock1");
+                    continue;
+                }
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                Thread.currentThread().interrupt();
+                return;
             }
 
             System.out.println("op1: lock1 acquired, trying to acquire lock2");
@@ -28,7 +32,9 @@ public class LiveLock {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                Thread.currentThread().interrupt();
+                lock1.unlock();
+                return;
             }
 
             if (lock2.tryLock()) {
@@ -50,9 +56,13 @@ public class LiveLock {
     public void op2() {
         while (true) {
             try {
-                lock2.tryLock(1000, TimeUnit.MILLISECONDS);
+                if (!lock2.tryLock(1000, TimeUnit.MILLISECONDS)) {
+                    System.out.println("op2: cannot acquired lock2");
+                    continue;
+                }
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                Thread.currentThread().interrupt();
+                return;
             }
 
             System.out.println("op2: lock2 acquired, trying to acquire lock1");
@@ -60,7 +70,9 @@ public class LiveLock {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                Thread.currentThread().interrupt();
+                lock2.unlock();
+                return;
             }
 
             if (lock1.tryLock()) {

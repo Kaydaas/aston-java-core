@@ -20,13 +20,14 @@ public class TwoThreadsVolatile {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                Thread.currentThread().interrupt();
+                return;
             }
         }
     }
 
     public void print2() {
-        while (true){
+        while (true) {
             if (!turnOne) {
                 System.out.println("2");
                 turnOne = true;
@@ -35,7 +36,8 @@ public class TwoThreadsVolatile {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                Thread.currentThread().interrupt();
+                return;
             }
         }
     }

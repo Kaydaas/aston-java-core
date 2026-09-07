@@ -21,7 +21,9 @@ public class DeadLock {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            Thread.currentThread().interrupt();
+            lock1.unlock();
+            return;
         }
 
         lock2.lock();
@@ -39,7 +41,9 @@ public class DeadLock {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            Thread.currentThread().interrupt();
+            lock2.unlock();
+            return;
         }
 
         lock1.lock();

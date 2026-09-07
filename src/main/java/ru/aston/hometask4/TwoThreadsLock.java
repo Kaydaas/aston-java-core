@@ -18,7 +18,8 @@ public class TwoThreadsLock {
                     try {
                         lock.wait();
                     } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
+                        Thread.currentThread().interrupt();
+                        return;
                     }
                 }
 
@@ -30,7 +31,8 @@ public class TwoThreadsLock {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                Thread.currentThread().interrupt();
+                return;
             }
         }
     }
@@ -42,7 +44,8 @@ public class TwoThreadsLock {
                     try {
                         lock.wait();
                     } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
+                        Thread.currentThread().interrupt();
+                        return;
                     }
                 }
 
@@ -54,7 +57,8 @@ public class TwoThreadsLock {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                Thread.currentThread().interrupt();
+                return;
             }
         }
     }
